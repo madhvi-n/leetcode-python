@@ -16,8 +16,6 @@ class Solution:
                     start = mid + 1
         return ans
         
-            
-    
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         ans = [-1, -1]
         ans[0] = self.binarySearch(nums, target, True)
