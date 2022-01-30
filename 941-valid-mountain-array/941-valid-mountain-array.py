@@ -28,7 +28,7 @@ class Solution:
             
     
     def validMountainArray(self, arr: List[int]) -> bool:
-        #if arr length is less than or equal to 2, return false
+        #if arr length is less than 3, return false
         if len(arr) < 3:
             return False
         
