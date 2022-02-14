@@ -3,6 +3,7 @@ class Solution:
         return self.mergeSort(nums, 0, len(nums))
     
     def mergeSort(self, nums: List[int], left: int, right: int) -> List[int]:
+        
         if right - left <= 1:
             return nums[left: right]
         
@@ -13,22 +14,26 @@ class Solution:
             return merge(first, second)
     
     def merge(self, arr1: List[int], arr2: List[int]) -> List[int]:
-        result = []
-        m, n = len(arr1), len(arr2)
-        i, j = 0, 0
+        i, j, k = 0, 0, 0
         
-        while i + j < m + n:
-            if i == m:
-                result.append(arr1[j])
-                j += 1
-            elif j == m:
-                result.append(arr1[i])
-                i += 1
-            elif arr1[i] <= arr2[j]:
-                result.append(arr1[i])
+        while i < len(arr1) and j < len(arr2):
+            if arr[i] < arr2[j]:
+                result[k] = arr1[i]
                 i += 1
             else:
-                result.append(arr2[j])
+                result[k] = arr2[j]
                 j += 1
+            k += 1
+
+        while i < len(arr1):
+            result[k] = arr1[i]
+            i += 1
+            k += 1
+
+        while j < len(arr2):
+            result[k] = arr2[j]
+            j += 1
+            k += 1
+    
         return result
             
