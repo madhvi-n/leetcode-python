@@ -9,8 +9,9 @@ class Solution:
         left = dummy
         right = head
         
-        for i in range(n):
+        while n > 0 and right:
             right = right.next
+            n -= 1
         
         while right:
             left = left.next
