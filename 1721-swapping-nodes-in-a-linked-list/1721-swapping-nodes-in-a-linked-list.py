@@ -13,7 +13,6 @@ class Solution:
         
     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         length = self.getLength(head)
-        dummy = ListNode(0, head)
         left = right = head
 
         for i in range(k - 1):
@@ -23,5 +22,5 @@ class Solution:
             right = right.next
         
         left.val, right.val = right.val, left.val
-        return dummy.next
+        return head
         
