@@ -14,15 +14,14 @@ class Solution:
     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         length = self.getLength(head)
         dummy = ListNode(0, head)
-        left = head
+        left = right = head
+
         for i in range(k - 1):
             left = left.next
         
-        right = head
         for i in range(length - k):
             right = right.next
         
         left.val, right.val = right.val, left.val
-        
         return dummy.next
         
