@@ -7,9 +7,6 @@ class Solution:
             for j in range(0, i):
                 if nums[j] < nums[i]:
                     arr[i] = max(arr[j] + 1, arr[i])
-                else:
-                    pass
             i += 1
         
         return max(arr)
-            
