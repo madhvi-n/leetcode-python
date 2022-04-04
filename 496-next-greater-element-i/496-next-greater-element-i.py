@@ -1,17 +1,15 @@
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        res = []
-        for j in range(len(nums1)):
-            j_max = nums1[j]
-            for i in range(nums2.index(j_max), len(nums2)):
-                if nums2[i] > nums1[j]:
-                    j_max = nums2[i]
-                    break
-                else:
-                    continue
-            if j_max == nums1[j]:
-                res.append(-1)
-            else:
-                res.append(j_max)
-        
+        nums1_index = {num: index for index, num in enumerate(nums1)}
+        res = [-1] * len(nums1)
+        stack = []
+
+        for i in range(len(nums2)):
+            cur = nums2[i]
+            while stack and cur > stack[-1]:
+                val = stack.pop()
+                idx = nums1_index[val]
+                res[idx] = cur
+            if cur in nums1_index:
+                stack.append(cur)
         return res
