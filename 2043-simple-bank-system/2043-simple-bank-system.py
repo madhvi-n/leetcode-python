@@ -11,7 +11,7 @@ class Bank:
 
     def deposit(self, account: int, money: int) -> bool:
         if 1 <= account <= len(self.accounts): 
-            self.accounts[account-1] += money
+            self.accounts[account - 1] += money
             return True 
         return False
 
