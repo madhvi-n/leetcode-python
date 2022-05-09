@@ -18,7 +18,7 @@ class Solution:
             return res
         
         def backtrack(index, candidate, digits, res):
-            if (index == len(digits)):
+            if index == len(digits):
                 res.append(candidate)
                 return
                 
