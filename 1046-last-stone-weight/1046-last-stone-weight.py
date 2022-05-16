@@ -15,7 +15,6 @@ class Solution:
                 heapq.heappush(heap, -1 * (first - second)) #since first is greater than second element   
 
         # if stones are none, 0 will be returned else element at index 0 will be returned
-        heap.append(0)
-        return abs(heap[0])
+        return abs(heap[0]) if heap else 0
 
         
