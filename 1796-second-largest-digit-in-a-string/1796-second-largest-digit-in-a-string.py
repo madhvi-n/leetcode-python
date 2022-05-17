@@ -3,10 +3,7 @@ class Solution:
         stack = []
         
         for char in s:
-            if char.isalpha():
-                continue
-            else:
-                if char not in stack:
-                    stack.append(char)
+            if char not in stack and char.isdigit():
+                stack.append(char)
         stack.sort(reverse=True)
         return stack[1] if len(stack) >= 2 else -1
