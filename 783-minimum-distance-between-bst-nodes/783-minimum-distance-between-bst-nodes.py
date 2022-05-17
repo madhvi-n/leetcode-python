@@ -16,8 +16,4 @@ class Solution:
             inorder(node.right)
         
         inorder(root)
-        
-        min_val = 999
-        for a, b in zip(elements, elements[1:]):
-            min_val = min(min_val, b - a)        
-        return min_val
+        return min(b - a for a, b in zip(elements, elements[1:]))
