@@ -10,11 +10,14 @@ class Solution:
             return []
         
         width, level = 0, [(root, 1)]
-        # Keep going untill current level has some nodes.
+        
+        # Keep going until current level has some nodes.
         while len(level):
+            
             # Put all children of current level in next_level.
             width = max(width, level[-1][1] - level[0][1] + 1)
             next_level = []
+            
             for item, num in level:
                 if item.left:   # Make sure to not put the Null nodes
                     next_level.append((item.left, num*2))
