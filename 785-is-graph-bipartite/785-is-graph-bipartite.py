@@ -7,8 +7,6 @@ class Solution:
             if graph[index]:
                 adjacency_list[index].extend(graph[index])
         
-        print(adjacency_list)
-        
         visited = [False] * n
         color = [False] * n
         
