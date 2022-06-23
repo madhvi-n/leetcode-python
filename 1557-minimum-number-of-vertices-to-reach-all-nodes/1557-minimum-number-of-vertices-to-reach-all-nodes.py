@@ -2,9 +2,6 @@ class Solution:
     def findSmallestSetOfVertices(self, n: int, edges: List[List[int]]) -> List[int]:
         adjacency_list = defaultdict(list)
         indegree = dict.fromkeys(range(n), 0)
-        count = 0
-        queue = deque()
-        stack = []
         
         for src, dest in edges:
             indegree[dest] += 1
