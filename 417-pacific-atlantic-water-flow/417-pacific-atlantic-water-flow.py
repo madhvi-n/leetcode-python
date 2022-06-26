@@ -18,7 +18,8 @@ class Solution:
             dfs(row, col + 1, visited, heights[row][col])
             dfs(row, col - 1, visited, heights[row][col])
         
-        
+        # water reaching the boundary cells of pacific and atlantic will reach the respective ocean
+        # run dfs recursively on boundaries to find which cells allow the water to flow 
         for col in range(cols):
             dfs(0, col, pacific, heights[0][col])
             dfs(rows - 1, col, atlantic, heights[rows - 1][col])
@@ -27,10 +28,10 @@ class Solution:
             dfs(row, 0, pacific, heights[row][0])
             dfs(row, cols - 1, atlantic, heights[row][cols - 1])
         
-        result = []
-        
-        for r in range(rows):
-            for c in range(cols):
-                if (r, c) in pacific and (r, c) in atlantic:
-                    result.append([r, c])
+        # result = []
+        # for r in range(rows):
+        #     for c in range(cols):
+        #         if (r, c) in pacific and (r, c) in atlantic:
+        #             result.append([r, c])
+        result = pacific.intersection(atlantic)
         return result
