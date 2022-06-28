@@ -1,5 +1,11 @@
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
+        # Start from 0
+        # recursively visit the adjacent nodes
+        # if adjacent nodes are visited, continue
+        # if source, adjacent connection doesn't exist, increment the counter
+        
+        # Time o(n) and Space O(n)
         graph = defaultdict(list)
         edges = {(a, b) for a, b in connections}
         
