@@ -1,16 +1,15 @@
 class Solution:
     def totalNQueens(self, n: int) -> int:
         column = set()
-        positiveDiagonal = set() #r + i
-        negativeDiagonal = set() #r - i
-        
-        result = []
+        positiveDiagonal = set() #r + c
+        negativeDiagonal = set() #r - c
         board = [["."] * n for i in range(n) ] 
+        count = 0
         
         def backtrack(r: int):
+            nonlocal count
             if r == n:
-                copy = ["".join(row) for row in board]
-                result.append(copy)
+                count += 1
                 return
             
             for c in range(n):
@@ -29,4 +28,4 @@ class Solution:
                 board[r][c] = "."
             
         backtrack(0)
-        return len(result)
+        return count
