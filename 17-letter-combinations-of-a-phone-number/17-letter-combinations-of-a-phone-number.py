@@ -17,16 +17,14 @@ class Solution:
         if (length == 0):
             return res
         
-        def backtrack(index, candidate, digits, res):
-            if index == len(digits):
-                res.append(candidate)
+        def backtrack(i, curr_string):
+            if len(curr_string) == len(digits):
+                res.append(curr_string)
                 return
-                
-            for next_char in mapping[digits[index]]:
-                candidate += next_char
-                backtrack(index + 1, candidate, digits, res)
-                candidate = candidate[0:-1]
         
-        backtrack(0, "", digits, res)
+            for char in mapping[digits[i]]:
+                backtrack(i+ 1, curr_string + char)
         
+        if digits:
+            backtrack(0, "")
         return res
