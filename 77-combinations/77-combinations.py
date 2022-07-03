@@ -1,5 +1,14 @@
 class Solution:
-    def combine(self, n: int, k: int) -> List[List[int]]:
-        if k == 0:
-            return [[]]
-        return [pre + [i] for i in range(k, n+1) for pre in self.combine(i-1, k-1)]
+    def combine(self, n: int, k: int) -> List[List[int]]:        
+        result = []
+        def backtrack(start, combination):
+            if len(combination) == k:
+                result.append(combination[:])
+            
+            for i in range(start, n + 1):
+                combination.append(i)
+                backtrack(i + 1, combination)
+                combination.pop()
+        
+        backtrack(1, [])
+        return result
