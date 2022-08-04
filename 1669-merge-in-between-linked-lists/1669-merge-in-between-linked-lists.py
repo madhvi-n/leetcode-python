@@ -6,16 +6,18 @@
 class Solution:
     def mergeInBetween(self, list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode:
         prev, curr = list1, list1
-        i = 0
+        index = 0
         
-        while i != a:
+        while index < a:
             prev = curr
             curr = curr.next
-            i += 1
+            index += 1
         
-        while i != b:
+        while index < b:
             curr = curr.next
-            i += 1
+            index += 1
+            
+        
         prev.next = list2
         
         while list2.next is not None:
