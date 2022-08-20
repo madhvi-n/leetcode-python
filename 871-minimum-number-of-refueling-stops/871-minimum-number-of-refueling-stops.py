@@ -1,5 +1,6 @@
 class Solution:
     def minRefuelStops(self, target: int, startFuel: int, stations: List[List[int]]) -> int:
+        #Using Max heap
         
         stack = []
         stations.append((target, float('inf')))
