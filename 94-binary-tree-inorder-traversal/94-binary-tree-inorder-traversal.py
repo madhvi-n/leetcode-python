@@ -9,11 +9,11 @@ class Solution:
         elements = []
         
         if root is None:
-            return root
+            return
         
         if root.left:
             elements += self.inorderTraversal(root.left)
-            
+        
         elements.append(root.val)
         
         if root.right:
