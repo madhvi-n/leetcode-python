@@ -7,21 +7,20 @@ class Node:
 """
 
 class Solution:
-    def levelOrder(self, root: 'Node') -> List[List[int]]:
+    def levelOrder(self, root: 'Node') -> List[List[int]]:        
+        queue = [root]
         res = []
         
-        q = collections.deque()
-        q.append(root)
-        
-        while q:
-            qlength = len(q)
+        while queue:
+            nodes = []
             level = []
-            for i in range(qlength):
-                node  = q.popleft()
+            for node in queue:
                 if node:
-                    level.append(node.val)
-                    for children in node.children:
-                        q.append(children)
-            if level:
-                res.append(level)
+                    nodes.append(node.val)
+                    if node.children:
+                        level.extend(node.children)
+            if nodes:
+                res.append(nodes)
+            queue = level
         return res
+            
