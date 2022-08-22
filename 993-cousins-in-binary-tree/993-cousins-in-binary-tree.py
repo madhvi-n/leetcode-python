@@ -6,7 +6,6 @@
 #         self.right = right
 class Solution:
     def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
-        
         def dfs(node, parent, depth, mod):
             if node:
                 if node.val == mod:
