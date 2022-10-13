@@ -3,7 +3,6 @@ class Solution:
         N = len(graph)
         safe = [False] * N
         
-        graph = [set(neighbors) for neighbors in graph]
         adjacency_list = defaultdict(set)
         queue = deque()
         
