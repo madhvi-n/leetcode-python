@@ -1,6 +1,8 @@
 class Solution:
     def equalFrequency(self, word: str) -> bool:
-        counter = Counter(Counter(word).values())
+        mapping = Counter(word)
+        counter = Counter(mapping.values())
+        
         keys, values = counter.keys(), counter.values()
         
         if len(counter) == 1:
