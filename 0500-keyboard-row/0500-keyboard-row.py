@@ -1,13 +1,14 @@
 class Solution:
     def findWords(self, words: List[str]) -> List[str]:
         res = []
-        first_row = "qwertyuiopQWERTYUIOP"
-        second_row = "asdfghjklASDFGHJKL"
-        third_row = "zxcvbnmZXCVBNM"
+        first_row = set("qwertyuiopQWERTYUIOP")
+        second_row = set("asdfghjklASDFGHJKL")
+        third_row = set("zxcvbnmZXCVBNM")
         
         for word in words:
-            if set(word).issubset(set(first_row)) or \
-                set(word).issubset(set(second_row)) or \
-                set(word).issubset(set(third_row)):
+            curr = set(word)
+            if curr.issubset(first_row) or \
+                curr.issubset(second_row) or \
+                curr.issubset(third_row):
                     res.append(word)
         return res
