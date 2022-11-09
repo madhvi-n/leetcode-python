@@ -3,8 +3,8 @@ class Solution:
         hashmap = dict()
         
         for index, num in enumerate(nums):
-            difference = target - num
-            if difference in hashmap:
-                return [hashmap.get(difference),index]
+            diff = target - num
+            if diff in hashmap:
+                return [hashmap.get(diff), index]
             hashmap[num] = index
-        return [-1, -1]
+        
