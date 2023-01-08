@@ -22,10 +22,7 @@ class Solution:
             queue = nodes
             res.append(level)
 
-        answer = []
-        for level in res:
-            answer.append(sum(level)/ len(level))
-        return answer
+        return [sum(level)/len(level) for level in res]
             
         
             
