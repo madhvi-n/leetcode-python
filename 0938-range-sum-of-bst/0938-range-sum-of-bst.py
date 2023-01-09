@@ -29,8 +29,11 @@ class Solution:
             if node.val >= low and node.val <= high:
                 self.rangeSum += node.val
             
-            dfs(node.left)
-            dfs(node.right)
+            if node.val > low:  
+                dfs(node.left)
+            
+            if node.val < high: 
+                dfs(node.right)
         
         dfs(root)
         return self.rangeSum
