@@ -7,14 +7,16 @@
 
 class Solution:
     def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
-        self.result_node = None
+        self.answer = None
         
-        def inorder(o: TreeNode, c: TreeNode):
-            if o:
-                inorder(o.left, c.left)
-                if o is target:
-                    self.result_node = c
-                inorder(o.right, c.right)
+        def dfs(originalNode, clonedNode):
+            if originalNode:
+                dfs(originalNode.left, clonedNode.left)
                 
-        inorder(original, cloned)
-        return self.result_node
+                if originalNode == target:
+                    self.answer = clonedNode
+                
+                dfs(originalNode.right, clonedNode.right)
+        
+        dfs(original, cloned)
+        return self.answer
