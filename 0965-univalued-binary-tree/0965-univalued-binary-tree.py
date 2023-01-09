@@ -14,6 +14,6 @@ class Solution:
             if node.val != parent.val:
                 return False
             
-            return node.val == parent.val and dfs(node.left, node) and dfs(node.right, node)
+            return dfs(node.left, node) and dfs(node.right, node)
         
         return dfs(root, root)
