@@ -24,4 +24,4 @@ class Solution:
                         total += childTime + 2
             return total
         
-        return dfs(0, None)
+        return dfs(0, -1)
