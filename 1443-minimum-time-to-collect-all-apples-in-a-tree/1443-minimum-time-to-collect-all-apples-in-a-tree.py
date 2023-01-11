@@ -11,15 +11,17 @@ class Solution:
         def dfs(node, parent):
             total = 0
             
-            if node not in visited:
-                visited.add(node)
-            
-                for child in adjacencyList[node]:
-                    if child != parent:
-                        childTime = dfs(child, node)
-                        
-                        if childTime > 0 or hasApple[child]:
-                            total += childTime + 2
+            if node in visited:
+                return total
+                
+            visited.add(node)
+
+            for child in adjacencyList[node]:
+                if child != parent:
+                    childTime = dfs(child, node)
+
+                    if childTime > 0 or hasApple[child]:
+                        total += childTime + 2
             return total
         
         return dfs(0, None)
