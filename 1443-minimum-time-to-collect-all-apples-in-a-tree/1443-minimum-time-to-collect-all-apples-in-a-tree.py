@@ -17,11 +17,13 @@ class Solution:
             visited.add(node)
 
             for child in adjacencyList[node]:
-                if child != parent:
-                    childTime = dfs(child, node)
+                if child == parent:
+                    continue
+                    
+                childTime = dfs(child, node)
 
-                    if childTime > 0 or hasApple[child]:
-                        total += childTime + 2
+                if childTime > 0 or hasApple[child]:
+                    total += childTime + 2
             return total
         
         return dfs(0, None)
