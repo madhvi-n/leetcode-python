@@ -11,22 +11,13 @@ class Solution:
             if node not in adjacencyList:
                 return 1
             
-            longest, secondLongest = 0, 0
-            
+            currentPath = 1
             for child in adjacencyList[node]:
-                longestFromChild = dfs(child)
-                
-                if s[node] == s[child]:
-                    continue
-                
-                if longestFromChild > longest:
-                    secondLongest, longest = longest, longestFromChild
-                    
-                elif longestFromChild > secondLongest:
-                    secondLongest = longestFromChild
-                    
-            self.longestPath = max(self.longestPath, longest + secondLongest + 1)
-            return longest + 1
+                childPath = dfs(child)
+                if s[node] != s[child]:
+                    self.longestPath = max(self.longestPath, childPath + currentPath)
+                    currentPath = max(currentPath, childPath + 1)
+            return currentPath
         
         dfs(0)
         return self.longestPath
