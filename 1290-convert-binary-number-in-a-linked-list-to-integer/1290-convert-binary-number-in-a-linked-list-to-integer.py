@@ -4,12 +4,12 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def getDecimalValue(self, head: ListNode) -> int:        
-        binary = ""
+    def getDecimalValue(self, head: ListNode) -> int:
+        curr = head
+        num = ""
         
-        node = head
-        while node:
-            binary += str(node.val)
-            node = node.next
+        while curr:
+            num += str(curr.val)
+            curr = curr.next
         
-        return int(binary, 2)
+        return int(num, 2)
