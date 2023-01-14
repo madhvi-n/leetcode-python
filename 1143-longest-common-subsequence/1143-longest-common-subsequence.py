@@ -1,17 +1,12 @@
 class Solution:
-    def longestCommonSubsequence(self, t1: str, t2: str, index1 = 0, index2 = 0):
-        memo = dict()
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        dp = [[0 for j in range(len(text2) + 1)] for i in range(len(text1) + 1)]
 
-        def recurse(index1 = 0, index2 = 0):
-            key = (index1, index2)
+        for i in range(len(text1) - 1, -1, -1):
+            for j in range(len(text2) - 1, -1, -1):
+                if text1[i] == text2[j]:
+                    dp[i][j] = 1 + dp[i + 1][j + 1]
+                else:
+                    dp[i][j] = max(dp[i][j + 1], dp[i + 1][j])
 
-            if key in memo:
-                return memo[key]
-            elif index1 == len(t1) or index2 == len(t2):
-                memo[key] = 0
-            elif t1[index1] == t2[index2]:
-                memo[key] = 1 + recurse(index1 + 1, index2 + 1)
-            else:
-                memo[key] = max(recurse(index1 + 1, index2), recurse(index1, index2 + 1))
-            return memo[key]
-        return recurse(0, 0)
+        return dp[0][0]
