@@ -1,18 +1,21 @@
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
-        if len(nums) < 3: return
+        if len(nums) < 3: 
+            return
+        
         nums.sort()
         result = nums[0] + nums[1] + nums[2]
-        for i in range(len(nums) - 2):
-            l, r = i + 1, len(nums) - 1
-            while l < r:
-                s = nums[i] + nums[l] + nums[r]
-                if s == target:
-                    return s
-                if abs(s - target) < abs(result - target):
-                    result = s
-                if s < target:
-                    l += 1
-                elif s > target:
-                    r -= 1
+        
+        for index in range(len(nums) - 2):
+            left, right = index + 1, len(nums) - 1
+            while left < right:
+                currSum = nums[index] + nums[left] + nums[right]
+                if currSum == target:
+                    return currSum
+                if abs(currSum - target) < abs(result - target):
+                    result = currSum
+                if currSum < target:
+                    left += 1
+                elif currSum > target:
+                    right -= 1
         return result
