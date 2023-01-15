@@ -1,15 +1,18 @@
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        visited = [False] * len(rooms)
-        visited[0] = True
+        graph = defaultdict(list)
+
+        for index, room in enumerate(rooms):
+            graph[index].extend(room)
         
-        queue = [0]
-        
-        while queue:
-            node = queue.pop()
-            
-            for neighbor in rooms[node]:
-                if not visited[neighbor]:
-                    visited[neighbor] = True
-                    queue.append(neighbor)
-        return all(visited)
+        visited = set()
+
+        def dfs(node):
+            visited.add(node)
+
+            for child in graph[node]:
+                if child not in visited:
+                    dfs(child)
+
+        dfs(0)
+        return len(visited) == len(rooms)
