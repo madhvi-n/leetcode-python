@@ -6,12 +6,6 @@ class Solution:
             for num in arr:
                 counter[num] = 1 + counter.get(num, 0)
                 
-        
         maxLen = len(nums)
-        res = []
-        for key, val in counter.items():
-            if val == maxLen:
-                res.append(key)
-        res.sort()
-        return res
+        return sorted(key for key, val in counter.items() if val == maxLen)
         
