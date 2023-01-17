@@ -1,16 +1,12 @@
 class Solution:
-    def isMonotonicIncreasing(self, arr):
-        for i in range(0, len(arr) - 1):
-            if arr[i] > arr[i + 1]:
-                return False
-        return True
-    
-    def isMonotonicDecreasing(self, arr):
-        for i in range(0, len(arr) - 1):
-            if arr[i] < arr[i + 1]:
-                return False
-        return True
-    
     def isMonotonic(self, nums: List[int]) -> bool:
-        return self.isMonotonicIncreasing(nums) or self.isMonotonicDecreasing(nums)
+        increasing, decreasing = True, True
         
+        for i in range(len(nums) - 1):
+            if nums[i] > nums[i + 1]:
+                increasing = False
+            
+            if nums[i] < nums[i + 1]:
+                decreasing = False
+        
+        return increasing or decreasing
