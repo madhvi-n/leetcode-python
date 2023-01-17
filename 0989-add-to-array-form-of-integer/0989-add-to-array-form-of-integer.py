@@ -6,9 +6,4 @@ class Solution:
             curr = 10 * curr + char
         curr = curr + k
         
-        res = []
-        
-        for char in str(curr):
-            res.append(int(char))
-        
-        return res
+        return [int(char) for char in str(curr)]
