@@ -8,6 +8,6 @@ class Solution:
         res = [0] * k
         
         for values in hashmap.values():
-            if len(values) <= k: 
-                res[len(values)-1] += 1
+            if len(values) <= k:
+                res[len(values) - 1] += 1
         return res
