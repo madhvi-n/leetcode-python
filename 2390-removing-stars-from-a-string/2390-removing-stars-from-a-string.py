@@ -5,8 +5,7 @@ class Solution:
         for char in s:
             if char == '*' and stack:
                 stack.pop()
-            
-            if char.isalpha():
+            else:
                 stack.append(char)
         
         return "".join(stack)
