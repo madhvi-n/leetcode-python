@@ -3,17 +3,19 @@ class Solution:
         stack = []
         
         for operation in operations:
-            if operation not in ["C", "D", "+"]:
-                stack.append(int(operation))
+            # if operation not in ["C", "D", "+"]:
+            #     stack.append(int(operation))
                 
-            elif operation == "C" and stack:
+            if operation == "C" and stack:
                 stack.pop()
             
             elif operation == "D":
                 stack.append(stack[-1] * 2)
             
             elif operation == "+":
-                a, b = int(stack[-1]), int(stack[-2])
-                stack.append(a + b)
+                stack.append(stack[-1] + stack[-2])
+            
+            else:
+                stack.append(int(operation))
         
         return sum(stack) if stack else 0
