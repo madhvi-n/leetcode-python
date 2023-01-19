@@ -1,6 +1,7 @@
 class Solution:
     def removeComments(self, source: List[str]) -> List[str]:
         res, buffer, block_comment_open = [], '', False
+        
         for line in source:
             i = 0
             while i < len(line):
