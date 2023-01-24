@@ -1,17 +1,25 @@
 class Solution:
     def checkValid(self, matrix: List[List[int]]) -> bool:
-        cols = collections.defaultdict(set)
-        rows = collections.defaultdict(set)
+        rows = defaultdict(set)
+        cols = defaultdict(set)
         
+        n = len(matrix)
         
-        for r in range(len(matrix)):
-            for c in range(len(matrix)):
-                #If element exist in any of the three sets, return False
-                if matrix[r][c] in rows[r] or matrix[r][c] in cols[c]:
-                    return False
+        for r in range(n):
+            for c in range(n):
                 
-                #Add element if it doesn't exist
-                rows[r].add(matrix[r][c])
-                cols[c].add(matrix[r][c])
+                curr = matrix[r][c]
                 
+                rows[r].add(curr)
+                cols[c].add(curr)
+        
+        for key, val in rows.items():
+            if len(val) != n:
+                return False
+        
+        for key, val in cols.items():
+            if len(val) != n:
+                return False
+        
         return True
+            
