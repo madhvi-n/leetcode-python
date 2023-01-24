@@ -5,6 +5,5 @@ class Solution:
         for index, num in enumerate(nums):
             diff = target - num
             if diff in hashmap:
-                return [hashmap.get(diff), index]
+                return [index, hashmap.get(diff)]            
             hashmap[num] = index
-        
