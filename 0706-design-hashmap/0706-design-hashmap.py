@@ -2,7 +2,7 @@ class MyHashMap:
 
     def __init__(self):
         self.size = 2069
-        self.buckets = [[] for _ in range(self.size)]
+        self.buckets = defaultdict(list)
         
 
     def put(self, key: int, value: int) -> None:
