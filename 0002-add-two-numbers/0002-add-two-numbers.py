@@ -16,8 +16,7 @@ class Solution:
             total = v1 + v2 + carry
             carry = total // 10
             
-            new_node = ListNode(total % 10)
-            curr.next = new_node
+            curr.next = ListNode(total % 10)
             curr = curr.next
         
             l1 = l1.next if l1 else None
