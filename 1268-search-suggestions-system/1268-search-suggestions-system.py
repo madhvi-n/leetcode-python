@@ -1,7 +1,7 @@
 class TrieNode:
     def __init__(self):
-        self.sub = {}
-        self.suggestion = []
+        self.children = {}
+        self.suggestions = []
         
 
 class Solution:
@@ -12,20 +12,22 @@ class Solution:
         return self._search(searchWord, root)
     
     def _insert(self, product: str, root: TrieNode) -> None:
-        trie = root
+        curr = root
         for char in product:
-            if char not in trie.sub:
-                trie.sub[char] = TrieNode()
-            trie = trie.sub[char]
-            trie.suggestion.append(product)
-            trie.suggestion.sort()
-            if len(trie.suggestion) > 3:
-                trie.suggestion.pop()
+            if char not in curr.children:
+                curr.children[char] = TrieNode()
+            curr = curr.children[char]
+            
+            curr.suggestions.append(product)
+            curr.suggestions.sort()
+            
+            if len(curr.suggestions) > 3:
+                curr.suggestions.pop()
     
     def _search(self, searchWord: str, root: TrieNode) -> List[List[str]]:              
         ans = []
         for char in searchWord:
             if root:
-                root = root.sub.get(char)
-            ans.append(root.suggestion if root else [])            
+                root = root.children.get(char)
+            ans.append(root.suggestions if root else [])            
         return ans
