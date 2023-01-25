@@ -1,7 +1,7 @@
 class Solution:
     def isCircularSentence(self, sentence: str) -> bool:
-        if len(sentence) == 1 and sentence[0] == sentence[-1]:
-            return True
+#         if len(sentence) == 1 and sentence[0] == sentence[-1]:
+#             return True
         
         sentence = sentence.split()
         
