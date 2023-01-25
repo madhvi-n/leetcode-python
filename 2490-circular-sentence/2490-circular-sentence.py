@@ -5,7 +5,7 @@ class Solution:
         
         sentence = sentence.split()
         
-        # for each word, check next word
+        # for each word, check next or prev word
         # if current's last is not equal to next's first character, return False
         
         for i in range(len(sentence)):
