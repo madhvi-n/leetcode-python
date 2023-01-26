@@ -14,10 +14,7 @@ class Solution:
 
         while queue:
             next_level = []
-            current_level = []
             for node in queue:
-                if node:
-                    current_level.append(node.val)
                 if node.left:
                     next_level.append(node.left)
                 if node.right:
