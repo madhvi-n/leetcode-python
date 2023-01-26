@@ -11,7 +11,6 @@ class Solution:
         
         self.result = []
         queue = [root]
-        level_order = []
 
         while queue:
             next_level = []
@@ -25,6 +24,5 @@ class Solution:
                     next_level.append(node.right)
             self.result.append(node.val)
             queue = next_level
-            level_order.append(current_level)
         
         return self.result
