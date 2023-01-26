@@ -14,17 +14,17 @@ class Solution:
         ans = []
         
         while queue:
-            levels = []
             nodes = []
-            for node in queue:
+            for _ in range(len(queue)):
+                node = queue.pop(0)
                 if node:
                     nodes.append(node.val)
                 if node.left:
-                    levels.append(node.left)
+                    queue.append(node.left)
                 if node.right:
-                    levels.append(node.right)
-            queue = levels
-            res.append(nodes)
+                    queue.append(node.right)
+            if nodes:
+                res.append(nodes)
         
         while res:
             ans.append(res.pop())
