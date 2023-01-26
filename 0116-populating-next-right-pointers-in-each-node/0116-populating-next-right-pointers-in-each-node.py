@@ -14,21 +14,21 @@ class Solution:
             return root
         
         queue = [root]
-        res = []
+        result = []
         
         while queue:
-            levels = []
-            nodes = []
+            next_level = []
+            current_level = []
             for node in queue:
-                nodes.append(node)
+                current_level.append(node)
                 if node.left:
-                    levels.append(node.left)
+                    next_level.append(node.left)
                 if node.right:
-                    levels.append(node.right)
-            queue = levels
-            res.append(nodes)
+                    next_level.append(node.right)
+            queue = next_level
+            result.append(current_level)
         
-        for levels in res:
+        for levels in result:
             if len(levels) == 1:
                 node = levels[0]
                 node.next = None
