@@ -18,6 +18,7 @@ class Solution:
 #             ans += min(left_max, right_max) - height[i]
         
 #         return ans
+
         areas = 0
         leftMax = rightMax = 0
         left = 0
