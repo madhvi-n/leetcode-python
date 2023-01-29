@@ -3,6 +3,6 @@ class Solution:
         hashmap = defaultdict(list)
         
         for word in strs:
-            key = tuple(sorted(word))
-            hashmap[key].append(word)
+            hashmap[tuple(sorted(word))].append(word)
+        
         return hashmap.values()
