@@ -1,57 +1,51 @@
-class ListNode:
+class Node:
     def __init__(self, key, val):
-        self.key, self.val = key, val
-        self.prev = self.next = None
-
+        self.key = key
+        self.val = val
+        self.prev = None
+        self.next = None
+        
 class LRUCache:
 
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.cache = {} # map key to nodes
-        
-        self.left = ListNode(0, 0)
-        self.right = ListNode(0, 0)
-        
-        # left: LRU and right: most recently used
-        self.left.next = self.right
-        self.right.prev = self.left
-    
-    def insert(self, node) -> None:
-        # insert at right/end
-        prev, next_node = self.right.prev, self.right        
-        prev.next = next_node.prev = node
-        node.prev = prev
-        node.next = next_node
-        
-        
-    def remove(self, node) -> None:
-        prev, next_node = node.prev, node.next
-        prev.next, next_node.prev = next_node, prev
-        
+        self.cache = {}
+        self.head = Node(0, 0)
+        self.tail = Node(0, 0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
     def get(self, key: int) -> int:
-        if key in self.cache:
-            # update most recent
-            self.remove(self.cache[key])
-            self.insert(self.cache[key])
-            return self.cache[key].val
-        return -1
-    
+        if key not in self.cache:
+            return -1
+        node = self.cache[key]
+        self._remove(node)
+        self._add(node)
+        return node.val
+
     def put(self, key: int, value: int) -> None:
-        # if key exists, remove the value from hashmap and update new value as Node
-        # insert the node in DLL
-        
         if key in self.cache:
-            self.remove(self.cache[key])
-        self.cache[key] = ListNode(key, value)
-        self.insert(self.cache[key])
-        
-        # check the cache capacity
-        # if capacity exceeds the defined capacity, evict or remove the least recently used
-        # lru will always be at left pointer
+            self._remove(self.cache[key])
+        node = Node(key, value)
+        self._add(node)
+        self.cache[key] = node
         if len(self.cache) > self.capacity:
-            lru = self.left.next
-            self.remove(lru)
-            del self.cache[lru.key]
+            node = self.head.next
+            self._remove(node)
+            del self.cache[node.key]
+
+    def _remove(self, node) -> None:
+        prev_node = node.prev
+        next_node = node.next
+        prev_node.next = next_node
+        next_node.prev = prev_node
+
+    def _add(self, node) -> None:
+        prev_node = self.tail.prev
+        prev_node.next = node
+        self.tail.prev = node
+        node.prev = prev_node
+        node.next = self.tail
         
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
