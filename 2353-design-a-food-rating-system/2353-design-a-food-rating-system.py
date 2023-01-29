@@ -16,8 +16,6 @@ class FoodRatings:
         while self.ratings[cuisine] and -self.ratings[cuisine][0][0] != self.mapping[self.ratings[cuisine][0][1]][1]:
             heapq.heappop(self.ratings[cuisine])
         return self.ratings[cuisine][0][1]
-        
-
 
 # Your FoodRatings object will be instantiated and called as such:
 # obj = FoodRatings(foods, cuisines, ratings)
