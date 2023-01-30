@@ -10,3 +10,6 @@ class Solution:
                 dp[j] = max(dp[j], dp[j - stone] + stone)
 
         return total - 2 * dp[target]
+
+
+
