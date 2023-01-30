@@ -5,9 +5,11 @@ class Solution:
         
         for i, n in enumerate(nums):
             if i >= k:
-                d.remove(nums[i-k])
+                d.remove(nums[i - k])
+                
             insort_left(d, n)
-            if i >= k-1:
+            
+            if i >= k - 1:
                 if k % 2 == 0:
                     m = (d[k//2 - 1] + d[k//2]) / 2
                 else:
