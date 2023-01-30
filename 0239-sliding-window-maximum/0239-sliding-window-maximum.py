@@ -1,34 +1,25 @@
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        output = []
-        maxQueue = deque()
-
-        i,j = 0,0
-        n = len(nums)
-
-        while(j < n):
-            #Remove all elements from deque that are smaller than current element at index j
-            while(len(maxQueue) > 0 and nums[j] > maxQueue[-1]): 
-                maxQueue.pop()  
-                
-            #And once removed, then put the j index element in the Queue
-            maxQueue.append(nums[j])
-
-            #Check Window size
-            if(j - i + 1 < k): 
-                j += 1
-            #If Window size = k
-            else:
-                #Put the maximum element in this window in the output
-                output.append(maxQueue[0])
-                
-                #Before sliding the window, check if the element we are not going to include in next window is max element or not
-                # It it is the max element, that means we remove it from deQue as well
-                if(nums[i] == maxQueue[0]): 
-                    maxQueue.popleft()
-                #Slide the window
-                i += 1
-                j += 1
-
-        return output
+        """
+        Initialize an empty deque q to store the indices of elements in the window.
+        Loop through the input list of numbers arr with an index i.
+        In each iteration, pop elements from the deque q until the deque is empty or the value of the last element in the deque is less than or equal to the current element arr[i].
+        Append the index i to the deque q.
+        If the first element in the deque q is equal to i - k, then pop it from the deque, since it is outside the current window.
+        If i is greater than or equal to k - 1, append the value arr[q[0]] to the result list, which represents the maximum value in the current window.
+        Return the result list after the loop.
+        """
+        result = []
+        q = deque()
         
+        for i in range(len(nums)):
+            while q and nums[q[-1]] <= nums[i]:
+                q.pop()
+            q.append(i)
+            
+            if q[0] == i - k:
+                q.popleft()
+            
+            if i >= k - 1:
+                result.append(nums[q[0]])
+        return result
