@@ -1,16 +1,17 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        @lru_cache(None)
-        def recurse(i, stock, count):
-            if i >= n: return 0
-            if count >= k: return 0
-            
-            buy = (-prices[i] + recurse(i+1, 1, count)) if stock == 0 else -inf
-            sell = (prices[i] + recurse(i+1, 0, count+1)) if stock == 1 else -inf
-            hold = recurse(i+1, stock, count)
-            
-            return max(buy, sell, hold)
-            
         n = len(prices)
-        k = 2 # set number of transactions here
-        return recurse(0, 0, 0)
+        first_buy, first_sell = [0] * n, [0] * n
+        second_buy, second_sell = [0] * n, [0] * n
+
+        first_buy[0] = -prices[0]
+        first_sell[0] = 0
+        second_buy[0] = -prices[0]
+        second_sell[0] = 0
+
+        for i in range(1, n):
+            first_buy[i] = max(first_buy[i - 1], -prices[i])
+            first_sell[i] = max(first_sell[i - 1], first_buy[i - 1] + prices[i])
+            second_buy[i] = max(second_buy[i - 1], first_sell[i - 1] - prices[i])
+            second_sell[i] = max(second_sell[i - 1], second_buy[i - 1] + prices[i])
+        return second_sell[-1]
