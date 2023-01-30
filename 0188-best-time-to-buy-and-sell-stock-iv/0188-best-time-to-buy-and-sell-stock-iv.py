@@ -18,12 +18,12 @@ class Solution:
         if k >= n // 2:
             return sum(max(prices[i + 1] - prices[i], 0) for i in range(n - 1))
 
-        dp = [[0] * n for _ in range(k + 1)]
+        min_price, max_profit = [float('inf')] * (k + 1), [0] * (k + 1)
 
-        for i in range(1, k + 1):
-            max_diff = -prices[0]
-            for j in range(1, n):
-                dp[i][j] = max(dp[i][j - 1], prices[j] + max_diff)
-                max_diff = max(max_diff, dp[i - 1][j] - prices[j])
+        for price in prices:
+            for i in range(1, k + 1):
+                min_price[i] = min(min_price[i], price - max_profit[i - 1])
+                max_profit[i] = max(max_profit[i], price - min_price[i])
 
-        return dp[k][n - 1]
+        return max_profit[k]
+
