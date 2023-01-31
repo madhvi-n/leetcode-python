@@ -4,16 +4,15 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def getLength(self, head) -> int:
-        count = 0
-        while head:
-            head = head.next
-            count += 1
-        return count
-        
     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        length = self.getLength(head)
+        length = 0
+        curr = head
+        while curr:
+            length += 1
+            curr = curr.next
+            
         dummy = ListNode(0, head)
+        
         left = right = head
         
         for i in range(k - 1):
@@ -24,4 +23,3 @@ class Solution:
         
         left.val, right.val = right.val, left.val
         return dummy.next
-        
