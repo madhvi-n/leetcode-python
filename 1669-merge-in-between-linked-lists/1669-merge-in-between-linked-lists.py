@@ -10,7 +10,8 @@ class Solution:
         # Move left till a - 1, prev to target
         for _ in range(a - 1):
             left = left.next 
-
+            
+        # Start from left, move right to (b - a + 1) nodes
         right = left
         for i in range(b - a + 1):
             right = right.next
