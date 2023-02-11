@@ -8,15 +8,12 @@ class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         
         def dfs(p, q):
-            if not p and not q:
+            if p is None and q is None:
                 return True
-            
-            if not p or not q:
+            if p is None or q is None:
                 return False
             
             if p.val != q.val:
                 return False
-            
-            return p.val == q.val and dfs(p.left, q.right) and dfs(p.right, q.left)
-        
-        return dfs(root.left, root.right)
+            return dfs(p.left, q.right) and dfs(p.right, q.left)
+        return not root or dfs(root.left, root.right)
