@@ -31,6 +31,9 @@ class Solution:
         #     heapq.heappush(heap, ([-count, num]))
         # return heap[0][1] if heap else -1
         
+        # heappush -> logn
+        # heappushpop -> logn
+        # Heap to track K most frequent -> O(nlogk) 
         k = len(freq)
         heap = []
         for key, val in freq.items():
