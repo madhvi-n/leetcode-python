@@ -1,6 +1,5 @@
 class Solution:
     def mostFrequentEven(self, nums: List[int]) -> int:
-        
         freq = dict()
         maxlen = 0
         for num in nums:
@@ -17,5 +16,4 @@ class Solution:
                 while stack and key < stack[-1]:
                     stack.pop()
                 stack.append(key)
-            print(stack)
         return stack[0]
