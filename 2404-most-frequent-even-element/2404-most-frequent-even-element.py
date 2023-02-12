@@ -6,7 +6,8 @@ class Solution:
         for num in nums:
             if num % 2 == 0:
                 freq[num] = 1 + freq.get(num, 0)
-                maxlen = max(maxlen, freq.get(num))
+                if freq.get(num) > maxlen:
+                    maxlen = freq.get(num)                    
         
         # if dict is empty, return -1 since all numbers are odd
         if len(freq) == 0:
