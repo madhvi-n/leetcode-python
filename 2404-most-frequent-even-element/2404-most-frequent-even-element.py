@@ -26,7 +26,17 @@ class Solution:
         # return stack[0]
         
         # Use a heap to keep track of the k most frequent even numbers
+        # heap = []
+        # for num, count in freq.items():
+        #     heapq.heappush(heap, ([-count, num]))
+        # return heap[0][1] if heap else -1
+        
+        k = len(freq)
         heap = []
-        for num, count in freq.items():
-            heapq.heappush(heap, ([-count, num]))
-        return heap[0][1] if heap else -1
+        for key, val in freq.items():
+            if len(heap) < k:
+                heapq.heappush(heap, (-val, key))
+            else:
+                if val > heap[0][0]:
+                    heapq.heappushpop(heap, (-val, key))
+        return heap[0][1]
