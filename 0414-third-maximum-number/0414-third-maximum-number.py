@@ -3,7 +3,6 @@ class Solution:
         nums = set(nums)
         
         heap = []
-        
         for num in nums:
             if len(heap) == 3:
                 if heap[-1] < num:
