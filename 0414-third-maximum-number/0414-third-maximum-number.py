@@ -14,8 +14,7 @@ class Solution:
             return heap[0]
         
         elif len(heap) == 2:
-            first_num = heap[0]
-            heappop(heap)
+            first_num = heapq.heappop(heap)
             return max(first_num, heap[0])
         
         return heap[0]
