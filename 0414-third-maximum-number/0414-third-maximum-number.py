@@ -7,8 +7,7 @@ class Solution:
         for num in nums:
             if len(heap) == 3:
                 if heap[-1] < num:
-                    heapq.heappop(heap)
-                    heapq.heappush(heap, num)
+                    heapq.heappushpop(heap, num)
             else:
                 heapq.heappush(heap, num)
         
