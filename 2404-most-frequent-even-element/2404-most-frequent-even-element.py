@@ -17,10 +17,16 @@ class Solution:
         # Push the key if values equals maxlen
         # Create a monotonic stack in ascending order
         
-        stack = []
-        for key, val in freq.items():
-            if val == maxlen:
-                while stack and key < stack[-1]:
-                    stack.pop()
-                stack.append(key)
-        return stack[0]
+        # stack = []
+        # for key, val in freq.items():
+        #     if val == maxlen:
+        #         while stack and key < stack[-1]:
+        #             stack.pop()
+        #         stack.append(key)
+        # return stack[0]
+        
+        # Use a heap to keep track of the k most frequent even numbers
+        heap = []
+        for num, count in freq.items():
+            heapq.heappush(heap, ([-count, num]))
+        return heap[0][1] if heap else -1
