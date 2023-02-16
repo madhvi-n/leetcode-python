@@ -8,6 +8,7 @@ class Solution:
         # Loop through the input list of numbers arr with an index i.
         # In each iteration, pop elements from the deque q until the deque is empty or the value of the last element in the deque is less than or equal to the current element arr[i].
         # Append the index i to the deque q.
+        
         for i in range(len(nums)):
             while queue and nums[queue[-1]] <= nums[i]:
                 queue.pop()
@@ -17,7 +18,7 @@ class Solution:
             if queue[0] == i - k:
                 queue.popleft()
             
-            # If i is greater than or equal to k - 1, append the value arr[q[0]] to the result list, which represents the maximum value in the current window.
-            if i >= k - 1:
+            # If i + 1 is greater than or equal to k, append the value arr[q[0]] to the result list, which represents the maximum value in the current window.
+            if i + 1 >= k:
                 result.append(nums[queue[0]])
         return result
