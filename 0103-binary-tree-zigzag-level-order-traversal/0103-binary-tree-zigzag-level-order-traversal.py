@@ -9,29 +9,22 @@ class Solution:
         if root is None:
             return root
         
-        queue = [root]
-        flag = False
+        queue = deque([root])
         res = []
-        
+        flag = False
         while queue:
-            levels = []
             nodes = []
-            
-            for node in queue:
-                if node:
-                    nodes.append(node.val)
-                    
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                nodes.append(node.val)
                 if node.left:
-                    levels.append(node.left)
-
+                    queue.append(node.left)
                 if node.right:
-                    levels.append(node.right)
-            queue = levels
+                    queue.append(node.right)
             if flag:
                 res.append(nodes[::-1])
             else:
                 res.append(nodes)
-            
             flag = not flag
+        return res    
         
-        return res
