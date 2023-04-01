@@ -5,6 +5,6 @@ class Solution:
         return max(0, self.getDate(min(leaveAlice, leaveBob)) - self.getDate(max(arriveAlice, arriveBob)) + 1)
     
     def getDate(self, date):
-        monthList = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        month, days = tuple(map(int, date.split('-')))
-        return sum(monthList[: month - 1]) + days
+        months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        month, day = tuple(map(int, date.split('-')))
+        return sum(months[:month - 1]) + day
