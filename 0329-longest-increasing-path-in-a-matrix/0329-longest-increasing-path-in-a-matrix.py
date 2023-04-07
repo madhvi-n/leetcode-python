@@ -1,6 +1,5 @@
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        # start from perimeter
         # We can use a recursive function dfs to explore all possible paths from a given cell. For each neighbor of the current cell with a greater value, we can continue the search, updating the length of the current path accordingly. We can keep track of the maximum path length seen so far and return it as the final result.
         
 #         if not matrix:
