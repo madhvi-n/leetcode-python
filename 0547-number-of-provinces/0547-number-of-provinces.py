@@ -1,16 +1,16 @@
 class Solution:
-    def findCircleNum(self, matrix: List[List[int]]) -> int:
-        n = len(matrix)
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        N = len(isConnected)
         visited = set()
         
-        def dfs(i):
-            for j in range(n) :
-                if matrix[i][j] == 1 and j not in visited:
-                    visited.add(j)
-                    dfs(j)
+        def dfs(source):
+            for adjacent in range(N):
+                if isConnected[source][adjacent] and adjacent not in visited:
+                    visited.add(adjacent)
+                    dfs(adjacent)
         
         ans = 0
-        for i in range(n):
+        for i in range(N):
             if i not in visited:
                 dfs(i)
                 ans += 1
