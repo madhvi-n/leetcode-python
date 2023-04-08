@@ -13,12 +13,15 @@ class StreamChecker:
         self.root = TrieNode()
         
         for word in words:
-            current_node = self.root
-            for letter in word:
-                if letter not in current_node.children:
-                    current_node.children[letter] = TrieNode()
-                current_node = current_node.children[letter]
-            current_node.word_end = True
+            self.add_word_to_trie(word)
+    
+    def add_word_to_trie(self, word) -> None:
+        curr = self.root
+        for letter in word:
+            if letter not in curr.children:
+                curr.children[letter] = TrieNode()
+            curr = curr.children[letter]
+        curr.word_end = True
 
     def query(self, letter):
         """
