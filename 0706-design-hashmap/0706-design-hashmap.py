@@ -11,7 +11,14 @@ class MyHashMap:
         self.hashmap = [ListNode() for _ in range(self.MOD + 1)]
         
     def hashkey(self, key) -> int:
-        return key % self.MOD
+        FNV_OFFSET = 10781
+        FNV_PRIME = 11261
+        
+        hash_val = FNV_OFFSET
+        key_bytes = str(key).encode('utf-8')
+        for byte in key_bytes:
+            hash_val = (hash_val ^ byte) * FNV_PRIME
+        return hash_val % self.MOD
     
     def put(self, key: int, value: int) -> None:
         index = self.hashkey(key)
