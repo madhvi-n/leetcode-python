@@ -6,8 +6,8 @@ class ListNode:
 class MyHashSet:
 
     def __init__(self):
-        self.MOD = 1009
-        self.map = [ListNode() for _ in range(self.MOD + 1)]
+        self.size = 1009
+        self.map = [ListNode() for _ in range(self.size)]
     
     def hashkey(self, key):
         FNV_OFFSET = 10781
@@ -17,7 +17,7 @@ class MyHashSet:
         key_bytes = str(key).encode('utf-8')
         for byte in key_bytes:
             hash_val = (hash_val ^ byte) * FNV_PRIME
-        return hash_val % self.MOD
+        return hash_val % self.size
     
     def add(self, key: int) -> None:
         curr = self.map[self.hashkey(key)]
