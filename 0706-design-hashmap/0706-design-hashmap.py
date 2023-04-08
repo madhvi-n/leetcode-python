@@ -7,18 +7,18 @@ class ListNode:
 class MyHashMap:
 
     def __init__(self):
-        self.MOD = 1009
-        self.hashmap = [ListNode() for _ in range(self.MOD + 1)]
+        self.size = 1009
+        self.hashmap = [ListNode() for _ in range(self.size)]
         
     def hashkey(self, key) -> int:
-        FNV_OFFSET = 10781
+        FNV_OFFSET = 1078112456
         FNV_PRIME = 11261
         
         hash_val = FNV_OFFSET
         key_bytes = str(key).encode('utf-8')
         for byte in key_bytes:
             hash_val = (hash_val ^ byte) * FNV_PRIME
-        return hash_val % self.MOD
+        return hash_val % self.size
     
     def put(self, key: int, value: int) -> None:
         index = self.hashkey(key)
