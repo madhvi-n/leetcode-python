@@ -10,17 +10,15 @@ class StreamChecker:
         :type words: List[str]
         """      
         self.waitlist = []
-        self.trie = dict()
+        self.root = TrieNode()
+        
         for word in words:
-            # create a temporary dict based off our root dict object
-            temp_dict = self.trie
+            current_node = self.root
             for letter in word:
-                # update our temporary dict and add our current letter and a sub-dictionary
-                # if key is not in dict, setdefault() will add {key:{}} and return default value {}
-                # otherwise it will directly return the existing value of key
-                temp_dict = temp_dict.setdefault(letter, dict())
-            # If our word is finished, add {'#': '#'} at the stopping node
-            temp_dict['#'] = '#'
+                if letter not in current_node.children:
+                    current_node.children[letter] = TrieNode()
+                current_node = current_node.children[letter]
+            current_node.word_end = True
 
     def query(self, letter):
         """
@@ -28,13 +26,13 @@ class StreamChecker:
         :rtype: bool
         """
         waitlist = []
-        # if letter can be the prefix of word
-        if letter in self.trie:
-            waitlist.append(self.trie[letter])
-        # for each possible prefix, append letter if the new substr still can be a prefix
+        
+        if letter in self.root.children:
+            waitlist.append(self.root.children[letter])
+            
         for item in self.waitlist:
-            if letter in item:
-                waitlist.append(item[letter])
+            if letter in item.children:
+                waitlist.append(item.children[letter])
                 
         self.waitlist = waitlist
-        return any('#' in item for item in self.waitlist)
+        return any(item.word_end for item in self.waitlist)
