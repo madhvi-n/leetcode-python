@@ -11,7 +11,7 @@ class MyHashMap:
         self.hashmap = [ListNode() for _ in range(self.size)]
         
     def hashkey(self, key) -> int:
-        FNV_OFFSET = 1078112456
+        FNV_OFFSET = 10781
         FNV_PRIME = 11261
         
         hash_val = FNV_OFFSET
