@@ -10,8 +10,8 @@ class MyHashSet:
         self.map = [ListNode() for _ in range(self.MOD + 1)]
     
     def hashkey(self, key):
-        FNV_OFFSET = 14695981039346656037
-        FNV_PRIME = 1099511628211
+        FNV_OFFSET = 10781
+        FNV_PRIME = 11261
         
         hash_val = FNV_OFFSET
         key_bytes = str(key).encode('utf-8')
