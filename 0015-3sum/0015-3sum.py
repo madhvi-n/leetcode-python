@@ -20,6 +20,6 @@ class Solution:
                     left += 1
                     
                     # #to avoid duplicates and never letting the left pass the right pointer
-                    # while nums[left] == nums[left - 1] and left < right:
-                    #     left += 1
+                    while nums[left] == nums[left - 1] and left < right:
+                        left += 1
         return res
