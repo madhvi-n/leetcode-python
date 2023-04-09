@@ -3,6 +3,7 @@ class Solution:
         count = 0
         
         for i in range(1, len(nums)-1):
+            # skipping the part where it's part of hill or valley
             if nums[i] == nums[i+1]:
                 nums[i] = nums[i-1]
                 
