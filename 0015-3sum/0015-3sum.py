@@ -4,8 +4,8 @@ class Solution:
         nums.sort()
         
         for index, a in enumerate(nums):
-            if index > 0 and a == nums[index - 1]:
-                continue
+            # if index > 0 and a == nums[index - 1]:
+            #     continue
             
             left, right = index + 1, len(nums) - 1
             while left < right:
