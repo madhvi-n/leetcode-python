@@ -1,12 +1,14 @@
 class Solution:
     def divideString(self, s: str, k: int, fill: str) -> List[str]:
         # Initialize an empty list to hold the parts
+        # Start iterating through string from 0 through len(s) with step k
+        # If length of substring is less than k, add fill
+        
         parts = []
         
         for i in range(0, len(s), k):
-            parts.append(s[i:i+k])
-        
-        for index, part in enumerate(tuple(parts)):
-            if len(part) < k:
-                parts[index] = part + (k - len(part)) * fill
+            curr = s[i:i+k]
+            if len(curr) < k:
+                curr = curr + (k - len(curr)) * fill
+            parts.append(curr)
         return parts
