@@ -1,11 +1,11 @@
 class Solution:
     def parseBoolExpr(self, expression: str) -> bool:
-        func = {'&' : all, '|' : any, '!' : lambda x : not x[0]}
+        hashmap = {'&' : all, '|' : any, '!' : lambda x : not x[0]}
         
         stack = []
         for c in expression:
-            if c in func:
-                stack.append(func[c])
+            if c in hashmap:
+                stack.append(hashmap[c])
             elif c == '(':
                 stack.append('(')
             elif c == 'f':
