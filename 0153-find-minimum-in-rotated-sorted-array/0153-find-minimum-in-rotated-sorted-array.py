@@ -1,7 +1,7 @@
 class Solution:
     def findMin(self, nums: List[int]) -> int:
         if not nums:
-            return None
+            return nums
         
         if len(nums) == 1:
             return nums[0]
