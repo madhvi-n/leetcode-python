@@ -3,6 +3,9 @@ class Solution:
         if not nums:
             return nums
         
+        if len(nums) == 1:
+            return nums[0]
+        
         left, right = 0, len(nums) - 1
         while left < right:
             mid = (left + right) // 2
