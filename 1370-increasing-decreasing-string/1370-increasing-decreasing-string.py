@@ -4,7 +4,7 @@ class Solution:
         res = ""
         string = "abcdefghijklmnopqrstuvwxyz"
         
-        while True:
+        while freq:
             for char in string:
                 if char in freq:
                     freq[char] -= 1
@@ -20,8 +20,5 @@ class Solution:
                     
                     if freq[char] == 0:
                         freq.pop(char)
-            
-            if not freq:
-                break
                 
         return res
