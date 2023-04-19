@@ -6,13 +6,23 @@
 #         self.right = right
 class Solution:
     def longestZigZag(self, root: Optional[TreeNode]) -> int:
-        
-        def dfs(root):
-            if not root: 
-                return [-1, -1, -1]
+        self.longest_path_length = 0
+
+        def find_longest_zigzags(root):
+            if root.left:
+                _, child_longest_right = find_longest_zigzags(root.left)
+                longest_left = child_longest_right + 1
+            else:
+                longest_left = 0
+
+            if root.right:
+                child_longest_left, _ = find_longest_zigzags(root.right)
+                longest_right = child_longest_left + 1
+            else:
+                longest_right = 0
             
-            left, right = dfs(root.left), dfs(root.right)
-            return [left[1] + 1, right[0] + 1, max(left[1] + 1, right[0] + 1, left[2], right[2])]
-        return dfs(root)[-1]
-    
+            self.longest_path_length = max(self.longest_path_length, longest_left, longest_right)
+            return longest_left, longest_right
         
+        find_longest_zigzags(root)
+        return self.longest_path_length
