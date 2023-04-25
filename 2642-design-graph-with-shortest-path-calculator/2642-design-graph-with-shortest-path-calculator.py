@@ -12,16 +12,16 @@ class Graph:
         self.graph[src].append(rest)
 
     def shortestPath(self, node1: int, node2: int) -> int:
-        g, seen = self.graph, set()
+        seen = set()
         heap = [(0, node1)]
         while heap:
             cost, node = heappop(heap)
             if node == node2:
                 return cost
             
-            if node not in seen and node in g:
+            if node not in seen and node in self.graph:
                 seen.add(node)
-                for child, cost1 in g[node]:
+                for child, cost1 in self.graph[node]:
                     heappush(heap, (cost + cost1, child))
         return -1
 
