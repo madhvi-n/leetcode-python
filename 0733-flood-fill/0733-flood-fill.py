@@ -1,11 +1,11 @@
 class Solution:
-    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:            
         rows, cols = len(image), len(image[0])
         oldColor = image[sr][sc]
         
+        
         def dfs(row, col):
-            # if row or col is out of bounds or pixel has new color or is different from source color 
-            if row < 0 or col < 0 or row >= rows or col >= cols or image[row][col] != oldColor or image[row][col] == color:
+            if row < 0 or row >= rows or col < 0 or col >= cols or image[row][col] != oldColor or image[row][col] == color:
                 return
             
             image[row][col] = color
@@ -15,6 +15,5 @@ class Solution:
             dfs(row, col + 1)
             dfs(row, col - 1)
             
-        
         dfs(sr, sc)
         return image
