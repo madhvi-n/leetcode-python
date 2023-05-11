@@ -35,6 +35,9 @@ class Solution:
     def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
         # find dislikes which belong to different groups
         # use union find
+        # create an adj list using dislikes
+        # init a dsu for n + 1
+        # for each node, for child of each node, if parent of node and child are same, return False
         adj = defaultdict(list)
         
         for x, y in dislikes:
